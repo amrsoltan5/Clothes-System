@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0e541e4b4ba4e05832672a5ad2ffaad" Name="Diagram1">
+        <EntityTypeShape EntityType="quntra_projectModel.customer" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.Gard" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.Muarden" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.product" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.rb7" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.Trans_Customer" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.Trans_Muarden" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.transaction" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="quntra_projectModel.user" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="quntra_projectModel.FK_Trans_Customer_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="quntra_projectModel.FK_Gard_products" ManuallyRouted="false" />
+        <AssociationConnector Association="quntra_projectModel.FK_Trans_Muarden_Muarden" ManuallyRouted="false" />
+        <AssociationConnector Association="quntra_projectModel.FK_transaction_products" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

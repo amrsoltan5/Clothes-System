@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MoamenShalaby.Models.product>
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+
+<script>
+    //$(function () {
+
+      
+    //    $("table").on("click", ".edite", function () {
+
+    //        var val1 = $(this).closest("tr").children().first().next().text();
+    //        var val2 = $(this).closest("tr").children().first().next().next().text();
+    //        var val3 = $(this).closest("tr").children().first().next().next().next().text();
+    //        var val4 = $(this).closest("tr").children().first().next().next().next().next().text();
+    //        var path = $(this).closest("tr").children().first().next().empty();
+    //        $(this).closest("tr").children().first().next().next().empty();
+    //        $(this).closest("tr").children().first().next().next().next().empty();
+    //        $(this).closest("tr").children().first().next().next().next().next().empty();
+    //        $(this).closest("tr").children().first().next().append("<input type='text'value='"+val1+"' />")
+    //        $(this).closest("tr").children().first().next().next().append("<input type='text'value='" + val2 + "' />")
+    //        $(this).closest("tr").children().first().next().next().next().append("<input type='text'value='" + val3 + "' />")
+    //        $(this).closest("tr").children().first().next().next().next().next().append("<input type='text'value='" + val4 + "' />")
+
+
+    //    });
+
+
+
+    //});
+
+
+
+</script>
+
+<center>
+ 
+
+    <table dir="rtl" class="table table-hover">
+        <thead> <tr> <th style="text-align:center;font-size:20px">الرقم</th> <th style="text-align:center;font-size:20px">اسم الصنف</th> <th style="text-align:center;font-size:20px">الكميه الاصليه</th>  <th style="text-align:center;font-size:20px">الكميه المباعه</th>  <th style="text-align:center;font-size:20px">سعر الجمله </th>  <th style="text-align:center;font-size:20px">سعر البيع </th> <th style="text-align:center;font-size:20px">تاريخ الاضافه </th> <th style="text-align:center;font-size:20px">حذف وتعديل    </th>  </tr> </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr> <td>@item.id</td> <td>@item.name</td> <td>@item.orginal_Qty</td> <td>@item.orginal_price</td>  <td>@item.date</td> <td> <a href="~/test/Edite?id=@item.id"> تعديل </a> <a href="~/test/Delete?id=@item.id"> حذف </a> </td> </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+   
+
+
+</center>
+

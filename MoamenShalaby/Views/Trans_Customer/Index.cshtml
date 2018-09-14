@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MoamenShalaby.Models.Trans_Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+
+<a href="~/Trans_Customer/Create" style="text-decoration:none;color:green;"><h2>اضافه</h2></a>
+
+<center>
+
+    <table class="table table-hover" dir="rtl">
+        <thead>
+            <tr>
+               
+                <th style="text-align:right;font-size:20px">اسم العميل</th>
+                <th style="text-align:right;font-size:20px">اجمالى التكاليف </th>
+                <th style="text-align:right;font-size:20px">المدفوع  </th>
+                <th style="text-align:right;font-size:20px">المتبقي  </th>
+                <th style="text-align:right;font-size:20px">ملاحظات  </th>
+                <th style="text-align:right;font-size:20px">تاريخ اضافه العمليه </th>
+
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active"> <td>@item.customer.name</td> <td>@item.total</td> <td>@item.cash</td> <td>@item.reminder</td> <td>@item.notes</td> <td>@item.date</td>  <td> <a href="~/Trans_Customer/Edite/@item.id">تعديل</a> </td> <td> <a href="~/Trans_Customer/Delete/@item.id">حذف</a> </td> </tr>
+            }
+
+        </tbody>
+
+    </table>
+</center>

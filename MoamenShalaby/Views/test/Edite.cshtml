@@ -1,0 +1,50 @@
+﻿
+@model MoamenShalaby.Models.product
+@{
+    ViewBag.Title = "Edite";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>Edite</h2>
+
+<center>
+
+    @using (Html.BeginForm())
+    {
+
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+                    <th style="text-align:right;font-size:20px">الرقم</th>
+                    <th style="text-align:right;font-size:20px">اسم الصنف</th>
+                    <th style="text-align:right;font-size:20px">الكميه الاصليه</th>
+                    <th style="text-align:right;font-size:20px">سعر الجمله</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr class="active">
+                    <td>1</td>
+                    <td>@Html.TextBoxFor(a => a.name, new { maxlength = "50" })</td>
+
+                    <td> @Html.EditorFor(moamen => moamen.orginal_Qty, new { maxlength = "50" })</td>
+
+                    <td> @Html.EditorFor(a => a.orginal_price, new { maxlength = "50" })
+                </tr>
+
+
+            </tbody>
+
+            <tfoot>
+
+                <tr> <td> <input type="submit" class="btn btn-success btn-lg" value="حفظ" /> </td> </tr>
+
+            </tfoot>
+        </table>
+
+
+    }
+</center>

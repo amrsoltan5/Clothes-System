@@ -1,0 +1,84 @@
+﻿@model MoamenShalaby.Models.TransactionViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<head>
+    
+    <script>
+        $(function () {
+
+            $("#name").on("change", function () {
+
+                var id = $(this).val();
+                //id.toString();
+                $("#Products_id").attr("value", id);
+
+
+            });
+
+
+            $("#name").select2();
+
+        });
+
+
+    </script>
+    
+
+</head>
+
+
+
+<center>
+
+  @using (Html.BeginForm())
+  {
+      <div>
+
+          <table  class="table table-hover" dir="rtl">
+
+              <thead>
+               <tr>
+                   <th style="text-align:right;font-size:20px">اسم الصنف</th>
+                   <th style="text-align:right;font-size:20px">الكميه المباعه </th>
+                   <th style="text-align:right;font-size:20px">الدسته  </th>
+                   <th style="text-align:right;font-size:20px">سعر البيع</th>
+                </tr>
+              
+              
+               </thead>
+
+
+              <tbody>
+
+                  <tr class="active">
+                      <td> @Html.DropDownList("name","") </td>
+                      <td> @Html.EditorFor(a=>a.saled_Qty) </td>
+                      <td>@Html.CheckBoxFor(a=>a.check)</td>
+                      <td> @Html.EditorFor(a => a.saled_Price) </td>
+                      <td> <input id="Products_id" type="hidden" value="" name="Products_id" /> </td>
+
+
+                  </tr>
+
+
+              </tbody>
+              <tfoot>
+                  <tr> <td> <input class="btn btn-success btn-lg"  type="submit" value="خصم" /> </td>  </tr>
+                  <tr><td>@ViewBag.message</td></tr>
+              </tfoot>
+
+          </table>
+
+
+
+      </div>
+
+
+
+  }
+</center>

@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="quntra_projectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="nvarchar" MaxLength="140" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Gard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="Qty_ava" Type="int" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Muarden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="notes" Type="nvarchar" MaxLength="150" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="orginal_Qty" Type="int" />
+          <Property Name="orginal_price" Type="money" />
+          <Property Name="total" Type="money" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rb7">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="Price_Total" Type="money" />
+          <Property Name="Qty_Total_Saled" Type="money" />
+          <Property Name="rb7" Type="money" />
+        </EntityType>
+        <EntityType Name="Trans_Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="int" />
+          <Property Name="total" Type="money" />
+          <Property Name="cash" Type="money" />
+          <Property Name="reminder" Type="money" />
+          <Property Name="notes" Type="nvarchar" MaxLength="150" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Trans_Muarden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="muarden_id" Type="int" />
+          <Property Name="Total" Type="money" />
+          <Property Name="Cash" Type="money" />
+          <Property Name="Reminder" Type="money" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="150" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="saled_Qty" Type="int" />
+          <Property Name="saled_Price" Type="money" />
+          <Property Name="Products_id" Type="int" />
+          <Property Name="total_price" Type="money" />
+          <Property Name="date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Gard_products">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="Gard" Type="Self.Gard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Gard">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trans_Customer_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="Trans_Customer" Type="Self.Trans_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trans_Customer">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trans_Muarden_Muarden">
+          <End Role="Muarden" Type="Self.Muarden" Multiplicity="0..1" />
+          <End Role="Trans_Muarden" Type="Self.Trans_Muarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Muarden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trans_Muarden">
+              <PropertyRef Name="muarden_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_products">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="Products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quntra_projectModelStoreContainer">
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gard" EntityType="Self.Gard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Muarden" EntityType="Self.Muarden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rb7" EntityType="Self.rb7" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trans_Customer" EntityType="Self.Trans_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trans_Muarden" EntityType="Self.Trans_Muarden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Gard_products" Association="Self.FK_Gard_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="Gard" EntitySet="Gard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trans_Customer_customer" Association="Self.FK_Trans_Customer_customer">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="Trans_Customer" EntitySet="Trans_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trans_Muarden_Muarden" Association="Self.FK_Trans_Muarden_Muarden">
+            <End Role="Muarden" EntitySet="Muarden" />
+            <End Role="Trans_Muarden" EntitySet="Trans_Muarden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_products" Association="Self.FK_transaction_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="transaction" EntitySet="transaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quntra_projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Trans_Customer" Relationship="Self.FK_Trans_Customer_customer" FromRole="customer" ToRole="Trans_Customer" />
+        </EntityType>
+        <EntityType Name="Gard">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="Qty_ava" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="product" Relationship="Self.FK_Gard_products" FromRole="Gard" ToRole="products" />
+        </EntityType>
+        <EntityType Name="Muarden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Trans_Muarden" Relationship="Self.FK_Trans_Muarden_Muarden" FromRole="Muarden" ToRole="Trans_Muarden" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orginal_Qty" Type="Int32" />
+          <Property Name="orginal_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Gards" Relationship="Self.FK_Gard_products" FromRole="products" ToRole="Gard" />
+          <NavigationProperty Name="transactions" Relationship="Self.FK_transaction_products" FromRole="products" ToRole="transaction" />
+        </EntityType>
+        <EntityType Name="rb7">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="Price_Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Qty_Total_Saled" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="rb71" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="Trans_Customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cash" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="reminder" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="notes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_Trans_Customer_customer" FromRole="Trans_Customer" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="Trans_Muarden">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="muarden_id" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Cash" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Reminder" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Notes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Muarden" Relationship="Self.FK_Trans_Muarden_Muarden" FromRole="Trans_Muarden" ToRole="Muarden" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="saled_Qty" Type="Int32" />
+          <Property Name="saled_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Products_id" Type="Int32" />
+          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="product" Relationship="Self.FK_transaction_products" FromRole="transaction" ToRole="products" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Trans_Customer_customer">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="Trans_Customer" Type="Self.Trans_Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trans_Customer">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gard_products">
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
+          <End Role="Gard" Type="Self.Gard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Gard">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trans_Muarden_Muarden">
+          <End Role="Muarden" Type="Self.Muarden" Multiplicity="0..1" />
+          <End Role="Trans_Muarden" Type="Self.Trans_Muarden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Muarden">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trans_Muarden">
+              <PropertyRef Name="muarden_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_transaction_products">
+          <End Role="products" Type="Self.product" Multiplicity="0..1" />
+          <End Role="transaction" Type="Self.transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="transaction">
+              <PropertyRef Name="Products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quntra_project" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="Gards" EntityType="Self.Gard" />
+          <EntitySet Name="Muardens" EntityType="Self.Muarden" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="rb7" EntityType="Self.rb7" />
+          <EntitySet Name="Trans_Customer" EntityType="Self.Trans_Customer" />
+          <EntitySet Name="Trans_Muarden" EntityType="Self.Trans_Muarden" />
+          <EntitySet Name="transactions" EntityType="Self.transaction" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_Trans_Customer_customer" Association="Self.FK_Trans_Customer_customer">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="Trans_Customer" EntitySet="Trans_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gard_products" Association="Self.FK_Gard_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="Gard" EntitySet="Gards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trans_Muarden_Muarden" Association="Self.FK_Trans_Muarden_Muarden">
+            <End Role="Muarden" EntitySet="Muardens" />
+            <End Role="Trans_Muarden" EntitySet="Trans_Muarden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_transaction_products" Association="Self.FK_transaction_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="transaction" EntitySet="transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quntra_projectModelStoreContainer" CdmEntityContainer="quntra_project">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="quntra_projectModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gards">
+            <EntityTypeMapping TypeName="quntra_projectModel.Gard">
+              <MappingFragment StoreEntitySet="Gard">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="Qty_ava" ColumnName="Qty_ava" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Muardens">
+            <EntityTypeMapping TypeName="quntra_projectModel.Muarden">
+              <MappingFragment StoreEntitySet="Muarden">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="quntra_projectModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="orginal_Qty" ColumnName="orginal_Qty" />
+                <ScalarProperty Name="orginal_price" ColumnName="orginal_price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rb7">
+            <EntityTypeMapping TypeName="quntra_projectModel.rb7">
+              <MappingFragment StoreEntitySet="rb7">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Price_Total" ColumnName="Price_Total" />
+                <ScalarProperty Name="Qty_Total_Saled" ColumnName="Qty_Total_Saled" />
+                <ScalarProperty Name="rb71" ColumnName="rb7" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trans_Customer">
+            <EntityTypeMapping TypeName="quntra_projectModel.Trans_Customer">
+              <MappingFragment StoreEntitySet="Trans_Customer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="cash" ColumnName="cash" />
+                <ScalarProperty Name="reminder" ColumnName="reminder" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trans_Muarden">
+            <EntityTypeMapping TypeName="quntra_projectModel.Trans_Muarden">
+              <MappingFragment StoreEntitySet="Trans_Muarden">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="muarden_id" ColumnName="muarden_id" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
+                <ScalarProperty Name="Reminder" ColumnName="Reminder" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions">
+            <EntityTypeMapping TypeName="quntra_projectModel.transaction">
+              <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="saled_Qty" ColumnName="saled_Qty" />
+                <ScalarProperty Name="saled_Price" ColumnName="saled_Price" />
+                <ScalarProperty Name="Products_id" ColumnName="Products_id" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="quntra_projectModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,84 @@
+﻿@model MoamenShalaby.Models.Trans_CustomerViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<script>
+
+    $(function () {
+
+        $("#name").on("change", function () {
+
+            var id = $(this).val();
+            //id.toString();
+            $("#customer_id").attr("value", id);
+
+
+        });
+
+        $("#name").select2();
+
+    });
+
+
+
+</script>
+
+<h2>Create</h2>
+
+
+<center>
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+                    
+
+                    <th style="text-align:right;font-size:20px">اسم العميل</th>
+                    <th style="text-align:right;font-size:20px">اجمالى التكاليف </th>
+                    <th style="text-align:right;font-size:20px">المدفوع </th>
+
+                    <th style="text-align:right;font-size:20px">ملاحظات </th>
+                  
+
+
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+
+                <tr class="active">
+                   
+                    <td>@Html.DropDownList("name","")</td>
+                    <td>@Html.EditorFor(a => a.total, new { maxlength = "50" })</td>
+                    <td>@Html.EditorFor(a => a.cash, new { maxlength = "50" })</td>
+                    <td>@Html.TextAreaFor(a => a.notes, new { maxlength = "50" })</td>
+                    <td><input type="hidden" name="customer_id" value="" id="customer_id" /></td>
+
+                </tr>
+
+
+            </tbody>
+
+            <tfoot>
+
+                <tr>
+
+                    <td><input type="submit" class="btn btn-success btn-lg" value="اضافه" /></td>
+                </tr>
+
+
+            </tfoot>
+
+        </table>
+    }
+</center>

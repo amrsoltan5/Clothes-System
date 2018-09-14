@@ -1,0 +1,37 @@
+﻿@model List<MoamenShalaby.Models.transaction>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<a href="~/transaction/Create" style="text-decoration:none;color:green;"><h2>اضافه</h2></a>
+
+
+<center>
+    
+    <table class="table table-hover" dir="rtl">
+        <thead> <tr> <th style="text-align:right;font-size:20px">اسم الصنف</th>  <th style="text-align:right;font-size:20px">الكميه المباعه</th> <th style="text-align:right;font-size:20px">سعر البيع</th> <th style="text-align:right;font-size:20px">الربح </th> <th style="text-align:right;font-size:20px">تاريخ العمليه</th>  </tr> </thead>
+
+        <tbody class="active">
+
+            @foreach (var col in Model)
+            {
+                <tr class="active"> <td>@col.product.name</td> <td>@col.saled_Qty</td> <td>@col.saled_Price</td> <td>@col.total_price</td> <td>@col.date</td> <td><button id="delete" >حذف</button></td> </tr>
+            
+
+            }
+
+
+        </tbody>
+
+        <tfoot>
+
+
+        </tfoot>
+
+
+    </table>
+
+
+
+</center>

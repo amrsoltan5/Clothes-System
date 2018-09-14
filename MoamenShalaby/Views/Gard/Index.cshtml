@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MoamenShalaby.Models.Gard>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<a href="~/Gard/Create" style="text-decoration:none;color:green;"><h2>اضافه</h2></a>
+
+<center>
+
+    <table class="table table-hover" dir="rtl">
+        <thead>
+            <tr>
+                
+                <th style="text-align:right;font-size:20px">اسم الصنف</th>
+                <th style="text-align:right;font-size:20px">الكميه المتاحه من الصنف </th>
+                <th style="text-align:right;font-size:20px">تاريخ جرد الصنف  </th>
+
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active"> <td>@item.product.name</td> <td>@item.Qty_ava</td> <td>@item.date</td>  <td> <a href="~/Customer/Edite/@item.id">تعديل</a> </td> <td> <a href="~/Customer/Delete/@item.id">حذف</a> </td> </tr>
+            }
+
+        </tbody>
+
+    </table>
+</center>

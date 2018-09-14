@@ -1,0 +1,78 @@
+﻿@model MoamenShalaby.Models.GardViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<script>
+        $(function () {
+
+            $("#name").on("change", function () {
+
+                var id = $(this).val();
+                //id.toString();
+                $("#product_id").attr("value", id);
+
+
+            });
+
+
+            $("#name").select2();
+            $("#name").attr("style","width:150px")
+
+        });
+
+
+</script>
+
+<h2>Create</h2>
+
+
+<center>
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+                   
+                    <th style="text-align:right;font-size:20px">اسم الصنف</th>
+                    
+
+
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+
+                <tr class="active">
+                 
+
+                    <td>@Html.DropDownList("name","")</td>
+                    <td><input type="hidden" name="product_id" value="" id="product_id" /></td>
+                   
+
+                </tr>
+
+
+            </tbody>
+
+            <tfoot>
+
+                <tr>
+
+                    <td><input type="submit" class="btn btn-success btn-lg" value="جرد الصنف" /></td>
+                </tr>
+
+
+            </tfoot>
+
+        </table>
+    }
+</center>

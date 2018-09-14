@@ -1,0 +1,54 @@
+﻿@model MoamenShalaby.Models.MuardenViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<center>
+
+
+
+    @using (Html.BeginForm())
+    {
+
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+                    <th style="text-align:right;font-size:20px">الرقم</th>
+                    <th style="text-align:right;font-size:20px">اسم المورد</th>
+                    <th style="text-align:right;font-size:20px">ملاحظات </th>
+
+
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+
+                <tr class="active">
+                    <td>1</td>
+                    <td>@Html.TextBoxFor(a => a.name, new { maxlength = "50" })</td>
+                    <td>@Html.TextAreaFor(a => a.notes, new { maxlength = "50" })</td>
+                    
+                </tr>
+                
+                
+            </tbody>
+
+            <tfoot>
+
+                <tr>
+
+                    <td><input type="submit" class="btn btn-success btn-lg" value="اضافه عميل" /></td>
+                </tr>
+
+
+            </tfoot>
+
+         </table>
+    }
+    </center>

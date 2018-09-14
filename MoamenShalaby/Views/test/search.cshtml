@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MoamenShalaby.Models.product>
+
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>البحث بتاريخ اليوم</h2>
+<br />
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+<center>
+    <br />
+
+    @using (Ajax.BeginForm("Search", "test", new AjaxOptions { UpdateTargetId = "res",InsertionMode=InsertionMode.Replace,HttpMethod="post" }, new { }))
+    {
+        <div>
+
+            <input type="date" name="x" /> <br /> <br />
+             <input type="submit" value="بحث " />
+
+        </div>
+    }
+    <br /><br />
+    <div id="res">
+
+       
+
+    </div>
+</center>

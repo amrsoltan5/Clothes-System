@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MoamenShalaby.Models.rb7>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<a href="~/Rb7/Create" style="text-decoration:none;color:green;"><h2>اضافه</h2></a>
+
+<center>
+
+    <table class="table table-hover" dir="rtl">
+        <thead>
+            <tr>
+
+                <th style="text-align:right;font-size:20px">تاريخ الربح </th>
+                <th style="text-align:right;font-size:20px">  اجمالى قيمه البضاعه  </th>
+                <th style="text-align:right;font-size:20px">اجمالى قيمه البضاعه المباعه    </th>
+                <th style="text-align:right;font-size:20px"> الربح </th>
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active"> <td>@item.date</td> <td>@item.Price_Total</td> <td>@item.Qty_Total_Saled</td>  <td>@item.rb71</td>  <td> <a href="~/Rb7/Edite/@item.id">تعديل</a> </td> <td> <a href="~/Rb7/Delete/@item.id">حذف</a> </td> </tr>
+            }
+
+        </tbody>
+
+    </table>
+</center>

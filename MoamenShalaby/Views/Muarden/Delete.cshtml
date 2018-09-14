@@ -1,0 +1,22 @@
+﻿@model MoamenShalaby.Models.Muarden
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>Are You Shure You Want To Delete </h2>
+
+@using (Html.BeginForm())
+
+{
+    <div>
+
+        هل تريد حذف  @Html.DisplayFor(a => a.name)<br />
+
+        <input class="btn btn-success btn-lg" type="submit" value="موافق" />
+
+
+    </div>
+
+}
+

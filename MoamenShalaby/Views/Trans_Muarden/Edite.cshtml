@@ -1,0 +1,58 @@
+﻿@model MoamenShalaby.Models.Trans_Muarden
+@{
+    ViewBag.Title = "Edite";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>تعديل</h2>
+
+
+<center>
+    @using (Html.BeginForm())
+    {
+        <table class="table table-hover" dir="rtl">
+            <thead>
+                <tr>
+
+                    <th style="text-align:right;font-size:20px">اسم المدين</th>
+                    <th style="text-align:right;font-size:20px">اجمالى التكاليف </th>
+                    <th style="text-align:right;font-size:20px">المدفوع </th>
+
+                    <th style="text-align:right;font-size:20px">ملاحظات </th>
+
+
+
+
+                </tr>
+            </thead>
+
+
+
+            <tbody>
+                <tr class="active">
+
+
+                    <td>@Html.TextBoxFor(a => a.Muarden.name)</td>
+                    <td>@Html.EditorFor(a=>a.Total)</td>
+                    <td>@Html.EditorFor(a => a.Cash)</td>
+
+                    <td>@Html.TextAreaFor(a => a.Notes)</td>
+
+                </tr>
+
+            </tbody>
+
+            <tfoot>
+
+                <tr>
+                    <td>
+                        <input type="submit" value="حفظ" class="btn btn-success btn-lg" />
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+
+    }
+</center>

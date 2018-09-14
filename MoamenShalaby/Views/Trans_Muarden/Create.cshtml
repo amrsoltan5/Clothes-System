@@ -1,0 +1,77 @@
+﻿@model MoamenShalaby.Models.Trans_MuardenViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<h2>اضافه موردين</h2>
+<script>
+        $(function () {
+
+            $("#Muarden").on("change", function () {
+
+                var id = $(this).val();
+                //id.toString();
+                $("#muarden_id").attr("value", id);
+
+
+            });
+
+
+            $("#Muarden").select2();
+
+        });
+
+
+</script>
+
+<center>
+    @using (Html.BeginForm())
+    {
+    <table class="table table-hover" dir="rtl">
+        <thead>
+            <tr>
+                
+                <th style="text-align:right;font-size:20px">اسم المورد</th>
+                <th style="text-align:right;font-size:20px">اجمالى التكاليف </th>
+                <th style="text-align:right;font-size:20px">المدفوع </th>
+               
+                <th style="text-align:right;font-size:20px">ملاحظات </th>
+               
+
+
+
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+            <tr class="active">
+            
+               
+                <td>@Html.DropDownList("Muarden","")</td>
+                <td>@Html.EditorFor(a => a.Total)</td>
+                <td>@Html.EditorFor(a => a.Cash)</td>
+                
+                <td>@Html.TextAreaFor(a => a.Notes)</td>
+                <td> <input id="muarden_id" type="hidden" value="" name="muarden_id" /> </td>
+                
+           </tr>
+
+        </tbody>
+
+        <tfoot>
+
+<tr>
+    <td> 
+        <input type="submit" value="اضافه" class="btn btn-success btn-lg" /> 
+    </td>
+</tr>
+        </tfoot>
+
+    </table>
+
+
+    }
+</center>

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MoamenShalaby.Models.Muarden>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MyLayout.cshtml";
+}
+
+<a href="~/Muarden/Create" style="text-decoration:none;color:green;"><h2>اضافه</h2></a>
+
+
+<center>
+
+    <table class="table table-hover" dir="rtl">
+        <thead>
+            <tr>
+                <th style="text-align:right;font-size:20px">الرقم</th>
+                <th style="text-align:right;font-size:20px">اسم المورد</th>
+                <th style="text-align:right;font-size:20px">ملاحظات </th>
+                <th style="text-align:right;font-size:20px">تاريخ اضافه العميل </th>
+
+            </tr>
+        </thead>
+
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr class="active"> <td>@item.id</td> <td>@item.name</td> <td>@item.notes</td> <td>@item.date</td>  <td> <a href="~/Muarden/Edite/@item.id">تعديل</a> </td> <td> <a href="~/Muarden/Delete/@item.id">حذف</a> </td> </tr>
+            }
+
+        </tbody>
+
+    </table>
+    </center>
